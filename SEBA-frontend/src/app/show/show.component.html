@@ -1,0 +1,46 @@
+<div class="panel panel-default" *ngIf=event>
+  <div class="panel-heading">Event detail Form : You can see the detail information of an Event in this page.</div>
+  <div class="panel-body">
+    <form class="form-horizontal" *ngIf=event>
+  <div class="form-group">
+    <label for="event_name" class="col-sm-2 control-label">Event Name: </label>
+    <div class="col-sm-9">
+      <p class="form-control">{{event.name}}</p> 
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-sm-2 control-label">Description : </label>
+    <div class="col-sm-9">
+     <p class="form-control">{{event.description}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="class" class="col-sm-2 control-label">Class Name : </label>
+    <div class="col-sm-9">
+     <p class="form-control">{{event.class}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="teacher" class="col-sm-2 control-label">Responsible Teacher : </label>
+    <div class="col-sm-9">
+      <p class="form-control">{{event.teacher}}</p>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="id" class="col-sm-2 control-label">Event ID : </label>
+    <div class="col-sm-9">
+      <p class="form-control">{{event._id}}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      
+      <a class="btn btn-info" (click)="goBack()">Cancel</a>
+    </div>
+   
+  </div>
+</form>
+
+  </div>
+</div>
