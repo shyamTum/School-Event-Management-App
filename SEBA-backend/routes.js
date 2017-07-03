@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Event = require('./model');
+var User = require('./modelUser');
 
 router.get('/',function(req,res){
      Event.getEvents(function(err,events){
@@ -14,7 +15,11 @@ router.post('/',function(req,res){
 		name: req.body.name,
 	    description: req.body.description,
 	    class: req.body.class,
-	    teacher: req.body.teacher
+	    teacher: req.body.teacher,
+      infotext: req.body.infotext,
+      status: req.body.status,
+      cost: req.body.cost,
+      packing: req.body.packing
 	}
      Event.addEvent(newEvent,function(err,events){
      	if(err) throw err;
@@ -27,8 +32,12 @@ router.put('/:_id',function(req,res){
 		name: req.body.name,
 	    description: req.body.description,
 	    class: req.body.class,
-	    teacher: req.body.teacher
-	} 
+	    teacher: req.body.teacher,
+      infotext: req.body.infotext,
+      status: req.body.status,
+      cost: req.body.cost,
+      packing: req.body.packing
+	}
      Event.updateEvent(req.params._id,updateVal,function(err,events){
      	if(err) throw err;
      	res.json(events);
