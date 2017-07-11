@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EventService} from '../event.service';
 import {Event} from '../event';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {AppGlobals} from '../app-routing.module';
 
 @Component({
   selector: 'app-cost',
@@ -13,7 +14,8 @@ export class CostComponent implements OnInit {
   constructor(
     public eventService: EventService,
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public appglobals: AppGlobals
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class CostComponent implements OnInit {
   saveCostEdit() {
     var newCost = document.getElementById("cost").innerHTML;
     var id = this.route.snapshot.params['id'];
+    this.getEvent();
     var model = this.event;
     model.cost[0] = newCost;
     this.eventService.updateEvent(id, model).subscribe();
@@ -78,6 +81,7 @@ export class CostComponent implements OnInit {
   saveDescrEdit() {
     var newCost = document.getElementById("costDescr").innerHTML;
     var id = this.route.snapshot.params['id'];
+    this.getEvent();
     var model = this.event;
     model.cost[1] = newCost;
     this.eventService.updateEvent(id, model).subscribe();
@@ -87,4 +91,16 @@ export class CostComponent implements OnInit {
     document.getElementById("saveDescrButton").style.display = "none";
     document.getElementById("cancelDescrButton").style.display = "none";
   }
+
+  hideWhenParent(){
+    if(this.appglobals.getUserGlobal().role.toString()=="Teacher"){
+      return true;
+    }
+    if(this.appglobals.getUserGlobal().role.toString()=="Parent"){
+      return false;
+    } else {
+      return false;
+    }
+  }
+
 }

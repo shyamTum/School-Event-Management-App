@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { ShowComponent } from './show/show.component';
+import { SendEventComponent } from './send-event/send-event.component';
+import { ShowUserComponent } from './show-user/show-user.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {EventService} from './event.service';
@@ -31,6 +33,8 @@ const routes:Routes = [
   {path:'add', component:AddComponent},
   {path:'edit/:id', component:EditComponent},
   {path:'show/:id', component:ShowComponent},
+  {path:'show-user/:id', component:ShowUserComponent},
+  {path:'send-event/:id', component:SendEventComponent},
   {path:'eventoverview/:id', component:EventOverviewComponent}
   ];
 
@@ -42,6 +46,7 @@ export class AppGlobals {
     
   // }
   public isUserLoggedIn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isregistered:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public user;
   setLoginStatus(isLoggedIn){
@@ -51,11 +56,20 @@ export class AppGlobals {
   getLoginStatus(){
     return this.isUserLoggedIn;
   }
+
   setUserGlobal(User){
     this.user = User;
   }
   getUserGlobal(){
     return this.user;
+  }
+
+  setRegistrationStatus(isregistered){
+   // this.isUserLoggedIn.next(isLoggedIn);
+   this.isregistered = isregistered;
+  }
+  getRegistrationStatus(){
+    return this.isregistered;
   }
 }
 

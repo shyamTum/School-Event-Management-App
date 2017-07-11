@@ -13,6 +13,7 @@ import { EditComponent } from './edit/edit.component';
 import { ShowComponent } from './show/show.component';
 import {EventService} from './event.service';
 import {UserService} from './user.service';
+import {StudentService} from './student.service';
 import { EventOverviewComponent } from './eventoverview/eventoverview.component';
 import { EditDescriptionComponent } from './editdescription/editdescription.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +24,11 @@ import {PackingListComponent} from './packingList/packinglist.component';
 import {AppGlobals} from './app-routing.module';
 import { Injectable } from "@angular/core";
 import { Inject } from "@angular/core";
-
+import {ScheduleComponent} from './schedule/schedule.component';
+import { SendEventComponent } from './send-event/send-event.component';
+import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
+import {CommentBoxComponent} from './commentbox/commentbox.component';
+import { ShowUserComponent } from './show-user/show-user.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +43,12 @@ import { Inject } from "@angular/core";
     RegisterComponent,
     PlanStatusComponent,
     CostComponent,
-    PackingListComponent
+    PackingListComponent,
+    ScheduleComponent,
+    SendEventComponent,
+    BreadcrumbComponent,
+    CommentBoxComponent,
+    ShowUserComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,7 @@ import { Inject } from "@angular/core";
     HttpModule,
     FormsModule
   ],
-  providers: [EventService,UserService,AppGlobals],
+  providers: [EventService,UserService,AppGlobals,StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

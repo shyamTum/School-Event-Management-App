@@ -5,17 +5,17 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AppGlobals} from '../app-routing.module';
 
 @Component({
-  selector: 'app-editdescription',
-  templateUrl: './editdescription.component.html',
-  styleUrls: ['./editdescription.component.css']
+  selector: 'app-schedule',
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.css']
 })
-export class EditDescriptionComponent implements OnInit {
+export class ScheduleComponent implements OnInit {
 
   constructor(
     public eventService: EventService,
     public route: ActivatedRoute,
     public router: Router,
-     public appglobals: AppGlobals
+    public appglobals: AppGlobals
   ) { }
 
   ngOnInit() {
@@ -33,43 +33,42 @@ export class EditDescriptionComponent implements OnInit {
   /* Invoked when edit-Button is clicked. Element containing the description
   is transformed into an editable text field.
   Enables the save and cancel buttons and removes the edit-button. */
-  editText() {
-    document.getElementById("textDescr").className = "form-group";
-    document.getElementById("textDescr").setAttribute("contenteditable", "true");
-    document.getElementById("editButton").style.display = 'none';
-    document.getElementById("saveButton").style.display = '';
-    document.getElementById("cancelButton").style.display = '';
+  editScheduleText() {
+    document.getElementById("scheduleText").className = "form-group";
+    document.getElementById("scheduleText").setAttribute("contenteditable", "true");
+    document.getElementById("editScheduleButton").style.display = 'none';
+    document.getElementById("saveScheduleButton").style.display = '';
+    document.getElementById("cancelScheduleButton").style.display = '';
   }
 
   /* Invoked when the cancel-button is clicked.
    Cancels the change of the description.
   Removes the save and save-button and displays the edit-button. */
-  cancelEdit() {
-    document.getElementById("editButton").style.display = '';
-    document.getElementById("saveButton").style.display = "none";
-    document.getElementById("cancelButton").style.display = "none";
-    document.getElementById("textDescr").className="";
-    document.getElementById("textDescr").setAttribute("contenteditable", "false");
-    document.getElementById("textDescr").innerHTML = this.event.infotext;
+  cancelScheduleEdit() {
+    document.getElementById("editScheduleButton").style.display = '';
+    document.getElementById("saveScheduleButton").style.display = "none";
+    document.getElementById("cancelScheduleButton").style.display = "none";
+    document.getElementById("scheduleText").className="";
+    document.getElementById("scheduleText").setAttribute("contenteditable", "false");
+    document.getElementById("scheduleText").innerHTML = this.event.schedule;
   }
 
   /* Persists the new event infotext.
   Transfers the description box back into an uneditable text field.
   Hides the save and cancel buttons and displays the edit buttons. */
-  saveEdit() {
-    var newDescr = document.getElementById("textDescr").innerHTML;
+  saveScheduleEdit() {
+    var newDescr = document.getElementById("scheduleText").innerHTML;
     var id = this.route.snapshot.params['id'];
     this.getEvent();
     var model = this.event;
-    model.infotext = newDescr;
+    model.schedule = newDescr;
     this.eventService.updateEvent(id, model).subscribe();
-    document.getElementById("textDescr").className="";
-    document.getElementById("textDescr").setAttribute("contenteditable", "false");
-    document.getElementById("editButton").style.display = '';
-    document.getElementById("saveButton").style.display = "none";
-    document.getElementById("cancelButton").style.display = "none";
+    document.getElementById("scheduleText").className="";
+    document.getElementById("scheduleText").setAttribute("contenteditable", "false");
+    document.getElementById("editScheduleButton").style.display = '';
+    document.getElementById("saveScheduleButton").style.display = "none";
+    document.getElementById("cancelScheduleButton").style.display = "none";
   }
-
   hideWhenParent(){
     if(this.appglobals.getUserGlobal().role.toString()=="Teacher"){
       return true;
@@ -80,5 +79,4 @@ export class EditDescriptionComponent implements OnInit {
       return false;
     }
   }
-
 }

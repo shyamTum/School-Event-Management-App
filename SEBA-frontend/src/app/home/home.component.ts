@@ -30,14 +30,14 @@ export class HomeComponent implements OnInit {
      public router:Router,
      // @Inject(AppGlobals) appglobals: AppGlobals
      // public appglobals: AppGlobals
-     @Inject(forwardRef(() => AppGlobals)) public appglobals: AppGlobals,
+     @Inject(forwardRef(() => AppGlobals)) public appglobals: AppGlobals
   	) { }
 
   ngOnInit() {
     console.log("within function ngOnInit getEvents = ", this.getEvents());
     if(this.appglobals.getUserGlobal()!=null){
       console.log("from home user ",this.appglobals.getUserGlobal());
-  	this.getEvents();
+  	  this.getEvents();
   }
  }
   events:Event;
